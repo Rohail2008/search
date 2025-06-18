@@ -1,0 +1,322 @@
+/* Universal styles for consistent box model and reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #a8dadc, #457b9d); /* Cooler, deeper blue gradient */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #333;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95); /* Slightly less transparent */
+  backdrop-filter: blur(20px) saturate(1.8); /* More intense blur and saturation */
+  border-radius: 20px; /* Slightly more rounded */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Stronger, softer shadow */
+  padding: 50px 40px; /* Increased padding */
+  max-width: 950px; /* Slightly wider */
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  animation: fadeInContainer 1s ease-out forwards; /* Add fade-in animation for container */
+}
+
+@keyframes fadeInContainer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header h1 {
+  font-size: 3.5rem; /* Larger title */
+  color: #1d3557; /* Darker, richer blue */
+  margin-bottom: 12px;
+  letter-spacing: -1px; /* Slightly tighter letter spacing */
+  background: linear-gradient(45deg, #1d3557, #457b9d); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  font-size: 1.25rem; /* Slightly larger tagline */
+  color: #555;
+  margin-bottom: 40px; /* More space */
+  font-weight: 300; /* Lighter font weight */
+}
+
+footer {
+  margin-top: 50px; /* More space */
+  font-size: 0.95rem;
+  color: #888;
+  font-weight: 300;
+}
+
+/* Remove the outer container flex, as the search bar itself will be flex-like */
+.search-container-outer {
+  display: block; /* Revert to block display */
+  max-width: 600px; /* Constrain its width */
+  margin: 20px auto 0; /* Center it */
+}
+
+/* Search Icon Button - REMOVED (now an internal icon) */
+.icon-button {
+  display: none; /* Hide the old separate button */
+}
+
+/* Spinner Styles - Enhanced */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #457b9d; /* Match theme color */
+  border-radius: 50%;
+  width: 25px; /* Smaller spinner to fit inside */
+  height: 25px; /* Smaller spinner to fit inside */
+  animation: spin 0.8s linear infinite;
+  position: absolute; /* Position relative to search-controls */
+  right: 15px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.spinner.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Google CSE Overrides - To mimic Google's search bar */
+.gsc-control-cse {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 100%; /* Take full width of its parent */
+}
+
+.gsc-search-box {
+  margin-bottom: 25px !important; /* Space between input and results */
+}
+
+.gsc-input-box {
+  border-radius: 30px !important; /* More rounded, like Google's search bar */
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* More subtle shadow */
+  transition: box-shadow 0.3s ease;
+  height: 48px; /* Standard height for Google-like search bar */
+  display: flex; /* Use flex to align input content and icons */
+  align-items: center;
+  border: 1px solid #dfe1e5 !important; /* Subtle border */
+  background-color: white !important; /* Ensure white background */
+}
+
+.gsc-input-box:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important; /* Slightly more pronounced shadow on hover */
+  border-color: transparent !important; /* No border on hover */
+}
+
+.gsc-input-box:focus-within {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important; /* Stronger shadow on focus */
+  border-color: transparent !important; /* No border on focus */
+}
+
+input.gsc-input {
+  padding: 0 15px 0 50px !important; /* Left padding for icon, right for potential spinner/voice */
+  font-size: 1rem !important; /* Standard font size */
+  border: none !important;
+  outline: none !important;
+  background-color: transparent !important; /* Make input background transparent to see parent's white */
+  color: #3c4043 !important; /* Darker text color */
+  height: 100% !important; /* Make input take full height of its container */
+  flex-grow: 1; /* Allow input to fill available space */
+}
+
+/* Hide all default Google CSE internal elements we don't want */
+.gsc-search-button,
+.gsc-clear-button,
+.gsc-search-box-tools .gsc-search-button-v2,
+.gsc-input-box-hover,
+.gsc-input-box.gsc-input-box-focus,
+.gsc-input-box .gsc-search-button-v2, /* Also hide the search button inside the input box */
+.gsc-input-box .gsc-input-box-hover,
+.gsc-input-box .gsc-input-box-focus {
+    display: none !important;
+}
+
+/* Adjust results appearance */
+.gsc-resultsbox-visible {
+  opacity: 0;
+  transform: translateY(20px); /* Slightly more pronounced initial offset */
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother cubic-bezier transition */
+  margin-top: 30px; /* Space between input and results */
+}
+
+.gsc-resultsbox-visible.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gsc-webResult {
+  border-bottom: 1px solid #eee !important;
+  padding: 20px 0 !important;
+  margin-bottom: 0 !important;
+  transition: background-color 0.2s ease;
+}
+
+.gsc-webResult:hover {
+  background-color: #f5faff !important; /* Light hover effect */
+}
+
+.gs-title a {
+  color: #1d3557 !important; /* Darker link color */
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.gs-title a:hover {
+  text-decoration: underline !important;
+}
+
+.gs-snippet {
+  color: #444 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+.gs-url {
+  color: #457b9d !important; /* Themed URL color */
+  font-size: 0.85rem !important;
+  word-break: break-all;
+}
+
+/* Search Wrapper & Controls for internal icons */
+.search-wrapper {
+  position: relative; /* For absolute positioning of search-controls */
+  width: 100%; /* Take full width of parent (search-container-outer) */
+  display: flex;
+  flex-direction: column;
+}
+
+.search-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%; /* Match height of gsc-input-box */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out left icon, spinner, and right icon */
+  padding: 0 10px; /* Padding for internal icons */
+  pointer-events: none; /* Allows clicks to pass through to the input */
+  z-index: 1; /* Ensure icons are above the input field */
+}
+
+.search-controls > * {
+  pointer-events: auto; /* Re-enable pointer events for children elements */
+}
+
+.search-icon-left {
+  color: #9aa0a6; /* Google's search icon color */
+  font-size: 1.1rem;
+  margin-left: 5px; /* Adjust as needed */
+  pointer-events: none; /* Icon itself is not clickable, input is */
+}
+
+/* Optional: Voice Icon (if you decide to re-add) */
+/*
+.voice-icon-right {
+  color: #4285F4; // Google's blue for voice icon
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-right: 5px; // Adjust as needed
+}
+*/
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+    border-radius: 15px;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  header p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .search-container-outer {
+    max-width: 100%; /* Allow it to take more width on small screens */
+    margin: 20px auto 0;
+  }
+
+  .gsc-input-box {
+    height: 45px; /* Slightly smaller on mobile */
+  }
+
+  input.gsc-input {
+    padding: 0 10px 0 45px !important; /* Adjust padding for smaller icons/input */
+    font-size: 0.95rem !important;
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    right: 10px;
+  }
+
+  .search-icon-left {
+    font-size: 1rem;
+    margin-left: 2px;
+  }
+
+  .gsc-resultsbox-visible {
+    margin-top: 20px;
+  }
+
+  .gsc-webResult {
+    padding: 15px 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 25px 15px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+}
