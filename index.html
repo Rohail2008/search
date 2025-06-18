@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Google Search In Page</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elite Search</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script async src="https://cse.google.com/cse.js?cx=f3bd42b94d3e64d43"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Search Google Inside This Page</h1>
-    <div class="gcse-search"></div>
+    <header>
+      <h1>✨ Elite Search ✨</h1>
+      <p>Unleash the power of the web with elegant results</p>
+    </header>
+
+    <main>
+      <div class="search-container-outer">
+        <div class="search-wrapper">
+          <div class="search-controls">
+            <span class="search-icon-left"><i class="fas fa-search"></i></span>
+            <div class="spinner" id="loadingSpinner" aria-hidden="true"></div>
+            </div>
+          <div class="gcse-search"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Elite Search · Powered by Google</p>
+    </footer>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
